@@ -1,0 +1,31 @@
+<div class="container custom-container-2"></div>
+  <div class="col-md-7">
+  <div class="no-data text-center" *ngIf="Account.length == 0">
+    <p>There is no open account yet!</p>
+    <button class="btn btn-outline-primary" routerLink="/openaccount">Open account</button>
+  </div>
+  <div *ngIf="Account.length !== 0">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Balance</th>
+              <th scope="col">Status</th>
+              <th scope="col">Close</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let account of Account" (click)="selectAccount(account.accountId)" [class.alert-info]="account.accountId == accountSelected">
+              <td>{{account.name}}</td>
+              <td>{{account.balance}}</td>
+              <td>{{account.status}}</td>
+              <td>
+                <span class="delete" (click)="closeAccount(account)">Close</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>

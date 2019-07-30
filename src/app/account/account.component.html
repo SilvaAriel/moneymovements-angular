@@ -1,0 +1,7 @@
+<div class="container custom-container">
+  <div class="col-md-12">
+    <openaccount></openaccount>
+    <accountlist (accountSelectedEvent)=accountSelected($event)></accountlist>
+    <movement [accountId]="accountselected"></movement>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container custom-container">
+  <div class="col-md-5">
+    <h3 class="mb-3 text-center">Open Account</h3>
+
+    <div class="form-group float-left">
+      <input type="text" [(ngModel)]="account.name" class="form-control" placeholder="Name">
+    </div>
+
+    <div class="form-group float-left">
+        <input type="text" [(ngModel)]="account.balance" class="form-control" placeholder="Balance">
+      </div>
+
+    <div class="form-group">
+      <button class="btn btn-success btn-lg btn-block" (click)="openAccount()">Open Account</button>
+    </div>
+
+  </div>
+</div>
