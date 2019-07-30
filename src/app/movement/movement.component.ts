@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MovementService } from '../shared/movement.service'
 import { Router } from '@angular/router';
 
@@ -16,14 +16,19 @@ export class MovementComponent implements OnInit {
 
   operation:string = '';
 
+  @Output() updateAccountList = new EventEmitter();
+
   constructor(
-    public movementService: MovementService,
-    public router:Router) { }
+    public movementService: MovementService) { }
 
   ngOnInit() { }
 
   setOperation(op) {
     this.operation = op.id;
+  }
+
+  updateList(){
+    this.updateAccountList.emit(null);
   }
 
   finalizarOperacao() {
@@ -48,6 +53,6 @@ export class MovementComponent implements OnInit {
     this.detail = '';
     this.value = '';
     this.operation = '';
-    this.router.navigate(['account'])
+    this.updateList();
   }
 }
