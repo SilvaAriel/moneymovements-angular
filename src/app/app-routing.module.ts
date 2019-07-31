@@ -6,9 +6,7 @@ import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   {path:'', pathMatch: 'full', redirectTo:'account'},
-  {path:'account', component: AccountComponent},
-  {path:'openaccount', component: OpenaccountComponent},
-  {path:'accountlist', component: AccountlistComponent}
+  {path:'account', component: AccountComponent}
 ];
 
 @NgModule({
