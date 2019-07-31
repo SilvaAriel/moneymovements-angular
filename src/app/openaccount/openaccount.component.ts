@@ -11,18 +11,13 @@ export class OpenaccountComponent implements OnInit {
 
   @Input() account = {name: '', balance: ''}
 
-  constructor(
-    public accountService:AccountserviceService,
-    public router:Router
-  ) { }
+  constructor(public accountService:AccountserviceService) { }
 
   ngOnInit() {
   }
 
   openAccount() {
-    this.accountService.openAccount(this.account).subscribe((data:{})=>{
-      this.router.navigate(['account']);
-    })
+    this.accountService.openAccount(this.account).subscribe((data:{})=>{})
   }
 
 }
