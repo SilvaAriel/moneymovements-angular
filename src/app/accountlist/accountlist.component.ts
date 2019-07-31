@@ -8,41 +8,40 @@ import { AccountserviceService } from '../shared/account.service';
 })
 export class AccountlistComponent implements OnInit {
 
-  Account:any = []
+  Account: any = []
 
-  accountSelectedBefore:number = null;
-  accountSelected:number = 0;
+  accountSelected: number = 0;
 
   @Output() accountSelectedEvent = new EventEmitter<number>()
 
-  constructor(public accountService:AccountserviceService) { }
+  constructor(public accountService: AccountserviceService) { }
 
   ngOnInit() {
     this.getAllAccounts();
+    this.accountSelected = null;
   }
 
   getAllAccounts() {
-    return this.accountService.getAllAccounts().subscribe((data:{})=> {
+    return this.accountService.getAllAccounts().subscribe((data: {}) => {
       this.Account = data;
     })
   }
 
   closeAccount(account) {
-    if(window.confirm(`Do you want to close ${account.name} account?`)){
-      this.accountService.closeAccount(account).subscribe((data:{})=>{
+    if (window.confirm(`Do you want to close ${account.name} account?`)) {
+      this.accountService.closeAccount(account).subscribe((data: {}) => {
         this.getAllAccounts();
       })
     }
   }
 
-  selectAccount(id) {
-    if (this.accountSelected == this.accountSelectedBefore) {
-      this.accountSelected = 0;
+  selectAccount(index, accountId) {
+    if (this.accountSelected == index) {
+      this.accountSelected = null;
+      this.accountSelectedEvent.emit(0);
     } else {
-      this.accountSelected = id;
-      this.accountSelectedEvent.emit(this.accountSelected);
-      this.accountSelectedBefore = this.accountSelected;
+      this.accountSelected = index;
+      this.accountSelectedEvent.emit(accountId);
     }
   }
-
 }
