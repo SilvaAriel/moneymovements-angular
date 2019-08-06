@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountserviceService } from '../shared/account.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'openaccount',
@@ -11,13 +12,17 @@ export class OpenaccountComponent implements OnInit {
 
   @Input() account = {name: '', balance: ''}
 
+  @Output() updateAccountListEvent = new EventEmitter();
+
   constructor(public accountService:AccountserviceService) { }
 
   ngOnInit() {
   }
 
   openAccount() {
-    this.accountService.openAccount(this.account).subscribe((data:{})=>{})
+    this.accountService.openAccount(this.account).subscribe((data:{})=>{
+      this.updateAccountListEvent.emit(null)
+    })
   }
 
 }
