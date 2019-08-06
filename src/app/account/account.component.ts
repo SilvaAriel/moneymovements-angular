@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AccountlistComponent } from '../accountlist/accountlist.component';
 
 @Component({
   selector: 'app-account',
@@ -7,7 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
+  @ViewChild(AccountlistComponent) accountListComponent:AccountlistComponent;
+
   accountselected:number = 0;
+
+  teste:any;
 
   constructor() { }
 
@@ -16,6 +21,10 @@ export class AccountComponent implements OnInit {
 
   accountSelected(id:number) {
     this.accountselected = id;
+  }
+
+  updateAccountList() {
+    
   }
 
 }
