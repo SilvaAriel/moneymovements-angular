@@ -1,6 +1,6 @@
 <div class="container custom-container">
-  <div class="col-md-12">
-  </div>
+  <p *ngIf="error" class="alert alert-danger" role="alert">{{ error }}</p>
+  <p *ngIf="success" class="alert alert-success" role="alert">{{ success }}</p>
   <div *ngIf="accountId != 0" class="form-group float-left">
     <label class=""><input type="radio" name="operation" id="deposit" #deposit (click)="setOperation(deposit)">Deposit</label>
     <label class=""><input type="radio" name="operation" id="withdraw" #withdraw (click)="setOperation(withdraw)">Withdraw</label>

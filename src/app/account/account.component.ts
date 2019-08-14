@@ -8,11 +8,7 @@ import { AccountlistComponent } from '../accountlist/accountlist.component';
 })
 export class AccountComponent implements OnInit {
 
-  @ViewChild(AccountlistComponent) accountListComponent:AccountlistComponent;
-
   accountselected:number = 0;
-
-  teste:any;
 
   constructor() { }
 
@@ -21,10 +17,6 @@ export class AccountComponent implements OnInit {
 
   accountSelected(id:number) {
     this.accountselected = id;
-  }
-
-  updateAccountList() {
-    
   }
 
 }

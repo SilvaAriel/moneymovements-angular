@@ -49,11 +49,10 @@ export class MovementService {
   handleError(error) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
+      errorMessage = error.error.errors[0];
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = error.error.errors[0];
     }
-    window.alert(errorMessage);
     return throwError(errorMessage);
  }
 
