@@ -1,9 +1,5 @@
 <div class="container custom-container-2"></div>
   <div class="col-md-7">
-  <div class="no-data text-center" *ngIf="Account.length == 0">
-    <p>There is no open account yet!</p>
-    <button class="btn btn-outline-primary" routerLink="/openaccount">Open account</button>
-  </div>
   <div *ngIf="Account.length !== 0">
       <div class="col-md-12">
         <table class="table table-bordered">

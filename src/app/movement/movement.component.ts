@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MovementService } from '../shared/movement.service'
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'movement',
@@ -13,10 +12,13 @@ export class MovementComponent implements OnInit {
   @Input() detail: string = '';
   @Input() destAccountId:string = ''; 
   @Input() value:string = '';
+  
+  @Output() updateAccountList = new EventEmitter();
 
   operation:string = '';
 
-  @Output() updateAccountList = new EventEmitter();
+  error:string = "";
+  success:string = "";
 
   constructor(
     public movementService: MovementService) { }
@@ -25,10 +27,6 @@ export class MovementComponent implements OnInit {
 
   setOperation(op) {
     this.operation = op.id;
-  }
-
-  updateList(){
-    this.updateAccountList.emit(null);
   }
 
   finalizarOperacao() {
@@ -41,18 +39,37 @@ export class MovementComponent implements OnInit {
       destAccountId: this.destAccountId
     }
     if (this.operation == 'deposit') {
-      this.movementService.deposit(movement).subscribe((data:{})=> {
-        console.log(data)})
+      this.movementService.deposit(movement).subscribe(
+        (data:{})=> {
+          this.error=""
+          this.success="Done"
+        },
+        (error:any)=> {
+          this.error = error
+        })
     } else if (this.operation == 'withdraw') {
-      this.movementService.withdraw(movement).subscribe((data:{})=> {
-        console.log(data)})
+      this.movementService.withdraw(movement).subscribe(
+        (data:{})=> {
+          this.error=""
+          this.success="Done"
+        },
+        (error:any)=> {
+          this.error = error
+        })
     } else if (this.operation == 'transfer') {
-      this.movementService.transfer(movement).subscribe((data:{})=>{
-        console.log(data)})
+      this.movementService.transfer(movement).subscribe(
+        (data:{})=> {
+          this.error=""
+          this.success="Done"
+        },
+        (error:any)=> {
+          this.error = error
+        }
+      )
     }
     this.detail = '';
     this.value = '';
     this.operation = '';
-    this.updateList();
+    this.updateAccountList.emit(null);
   }
 }
