@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import { AccountserviceService } from '../shared/account.service';
+
 import { EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'openaccount',
@@ -10,19 +10,17 @@ import { EventEmitter } from '@angular/core';
 })
 export class OpenaccountComponent implements OnInit {
 
-  @Input() account = {name: '', balance: ''}
+  @Input() openAccountFormFields: FormGroup;
 
-  @Output() updateAccountListEvent = new EventEmitter();
+  @Output() sendFormData = new EventEmitter();
 
-  constructor(public accountService:AccountserviceService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   openAccount() {
-    this.accountService.openAccount(this.account).subscribe((data:{})=>{
-      this.updateAccountListEvent.emit(null)
-    })
-  }
+      this.sendFormData.emit(this.openAccountFormFields);
+    }
 
 }

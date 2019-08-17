@@ -45,12 +45,7 @@ export class AccountserviceService {
 
     handleError(error) {
       let errorMessage = '';
-      if(error.error instanceof ErrorEvent) {
-        errorMessage = error.error.message;
-      } else {
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      }
-      window.alert(errorMessage);
+      errorMessage = error.error.message;
       return throwError(errorMessage);
    }
 

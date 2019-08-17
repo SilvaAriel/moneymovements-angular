@@ -1,7 +1,15 @@
 <div class="container custom-container">
   <div class="col-md-12">
-    <openaccount (updateAccountListEvent) = "accountlist.getAllAccounts()"></openaccount>
-    <accountlist #accountlist (accountSelectedEvent)=accountSelected($event)></accountlist>
-    <movement [accountId]="accountselected" (updateAccountList)="accountlist.getAllAccounts()"></movement>
+    <openaccount 
+      [openAccountFormFields] = "openAccountFormGroup"
+      (sendFormData) = "updateOpenAccountFormData($event)">
+    </openaccount>
+    <accountlist #accountlist 
+      (accountSelectedEvent)=accountSelected($event)>
+    </accountlist>
+    <movement 
+      [accountId]="accountselected" 
+      (updateAccountList)="accountlist.getAllAccounts()">
+    </movement>
   </div>
 </div>
