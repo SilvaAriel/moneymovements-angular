@@ -22,8 +22,9 @@ export class AccountlistComponent implements OnInit {
   }
 
   getAllAccounts() {
-    return this.accountService.getAllAccounts().subscribe((data: {}) => {
-      this.Account = data;
+    return this.accountService.getAllAccounts().subscribe(
+      (data: {}) => {
+        this.Account = data;
     })
   }
 
