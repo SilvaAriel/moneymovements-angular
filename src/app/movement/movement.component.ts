@@ -9,13 +9,12 @@ import { MovementService } from '../shared/movement.service'
 export class MovementComponent implements OnInit {
 
   @Input() accountId: number = null;
-  @Input() detail: string = '';
-  @Input() destAccountId: string = ''; 
-  @Input() value: string = '';
-  
-  @Output() updateAccountList = new EventEmitter();
-
+  detail: string = '';
+  destAccountId: string = ''; 
+  value: string = '';
   operation:string = '';
+
+  @Output() updateAccountList = new EventEmitter();
 
   error:string = "";
   success:string = "";
