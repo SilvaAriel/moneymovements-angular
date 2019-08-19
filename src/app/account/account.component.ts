@@ -11,36 +11,66 @@ import { AccountlistComponent } from '../accountlist/accountlist.component';
 })
 export class AccountComponent implements OnInit {
 
-  @ViewChild (AccountlistComponent) accountListComponent:AccountlistComponent;
+  accounts: any = []
 
+  accountId: number;
+  accountselectedindex: number = null;
+  
   openAccountFormGroup: FormGroup;
   openAccountFormData = {name: '', balance: ''};
-  accountselected:number = 0;
 
   constructor(public accountService:AccountserviceService) {
     this.openAccountFormGroup = this.createOpenAccountFormGroup();
    }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getAllAccounts();
+  }
 
   openAccount() {
     this.accountService.openAccount(this.openAccountFormData).subscribe(
       (data:{})=>{
-        console.log(data);
-        this.accountListComponent.getAllAccounts();
+        this.getAllAccounts();
       },
       (error:{})=>{
         console.error(error)})
   }
 
+  getAllAccounts() {
+    return this.accountService.getAllAccounts().subscribe(
+      (data: {}) => {
+        this.accounts = data;
+    })
+  }
+
+  closeAccount(account) {
+    if (window.confirm(`Do you really want to close the account ${account.name} ?`)) {
+      this.accountService.closeAccount(account).subscribe((data: {}) => {
+        this.getAllAccounts();
+      })
+    }
+  }
+
   accountSelected(id:number) {
-    this.accountselected = id;
+    this.accountselectedindex = id;
   }
 
   updateOpenAccountFormData(form: FormGroup) {
     this.openAccountFormData.name = form.controls.accountName.value;
     this.openAccountFormData.balance = form.controls.balance.value;
     this.openAccount();
+  }
+
+  selectAccount(numbers:number[]) {
+    let index = numbers[0]
+    let accountId = numbers[1]
+    this.accountId = accountId;
+    if (this.accountselectedindex == index) {
+      this.accountselectedindex = null;
+      this.accountId = null;
+    } else {
+      this.accountselectedindex = index;
+    }
   }
 
   createOpenAccountFormGroup(){

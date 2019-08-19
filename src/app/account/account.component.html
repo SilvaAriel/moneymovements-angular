@@ -5,10 +5,13 @@
       (sendFormData) = "updateOpenAccountFormData($event)">
     </openaccount>
     <accountlist #accountlist 
-      (accountSelectedEvent)=accountSelected($event)>
+      [accountList]="accounts"
+      [accountSelectedIndex]="accountselectedindex"
+      (accountSelectedEvent)=selectAccount($event)
+      (closeAccountEvent)="closeAccount($event)">
     </accountlist>
     <movement 
-      [accountId]="accountselected" 
+      [accountId]="accountId"
       (updateAccountList)="accountlist.getAllAccounts()">
     </movement>
   </div>

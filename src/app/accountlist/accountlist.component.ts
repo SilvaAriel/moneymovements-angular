@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { AccountserviceService } from '../shared/account.service';
 
 @Component({
@@ -8,41 +8,21 @@ import { AccountserviceService } from '../shared/account.service';
 })
 export class AccountlistComponent implements OnInit {
 
-  Account: any = []
+  @Input() accountList: any = [];
+  @Input() accountSelectedIndex: number = null;
 
-  accountSelected: number = 0;
-
-  @Output() accountSelectedEvent = new EventEmitter<number>()
+  @Output() accountSelectedEvent = new EventEmitter<number[]>();
+  @Output() closeAccountEvent = new EventEmitter<Account>();
 
   constructor(public accountService: AccountserviceService) { }
 
-  ngOnInit() {
-    this.getAllAccounts();
-    this.accountSelected = null;
-  }
-
-  getAllAccounts() {
-    return this.accountService.getAllAccounts().subscribe(
-      (data: {}) => {
-        this.Account = data;
-    })
-  }
+  ngOnInit() {}
 
   closeAccount(account) {
-    if (window.confirm(`Do you want to close ${account.name} account?`)) {
-      this.accountService.closeAccount(account).subscribe((data: {}) => {
-        this.getAllAccounts();
-      })
-    }
+    this.closeAccountEvent.emit(account);
   }
 
   selectAccount(index, accountId) {
-    if (this.accountSelected == index) {
-      this.accountSelected = null;
-      this.accountSelectedEvent.emit(0);
-    } else {
-      this.accountSelected = index;
-      this.accountSelectedEvent.emit(accountId);
-    }
+    this.accountSelectedEvent.emit([index, accountId]);
   }
 }
