@@ -17,7 +17,7 @@
               <td>{{account.balance}}</td>
               <td>{{account.status}}</td>
               <td>
-                <span class="delete" (click)="closeAccount(account)">Close</span>
+                <span *ngIf="account.status" class="delete" (click)="closeAccount(account)">Close</span>
               </td>
             </tr>
           </tbody>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'
@@ -10,6 +10,9 @@ import { OpenaccountComponent } from './openaccount/openaccount.component';
 import { AccountlistComponent } from './accountlist/accountlist.component';
 import { MovementComponent } from './movement/movement.component';
 import { AccountComponent } from './account/account.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GlobalErrorHandler } from './global-error-handler';
+import { MatSnackBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,11 @@ import { AccountComponent } from './account/account.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
