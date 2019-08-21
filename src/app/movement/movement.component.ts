@@ -11,9 +11,9 @@ export class MovementComponent implements OnInit {
 
   @Input() accountId: number = null;
   detail: string = '';
-  destAccountId: string = ''; 
+  destAccountId: string = '';
   value: string = '';
-  operation:string = '';
+  operation: string = '';
 
   @Output() updateAccountList = new EventEmitter();
 
@@ -38,26 +38,29 @@ export class MovementComponent implements OnInit {
     }
     if (this.operation == 'deposit') {
       this.movementService.deposit(movement).subscribe(
-        (data:{})=> {
-          this.notificationService.showSuccess("Done");
+        (data: {}) => {
+          this.notificationService.showSuccess('Done');
+          this.updateAccountList.emit(null);
         },
-        (error:any)=> {
+        (error: any) => {
           throw new Error(error);
         })
-      } else if (this.operation == 'withdraw') {
-        this.movementService.withdraw(movement).subscribe(
-          (data:{})=> {
-            this.notificationService.showSuccess("Done");
-          },
-          (error:any)=> {
-            throw new Error(error);
+    } else if (this.operation == 'withdraw') {
+      this.movementService.withdraw(movement).subscribe(
+        (data: {}) => {
+          this.notificationService.showSuccess('Done');
+          this.updateAccountList.emit(null);
+        },
+        (error: any) => {
+          throw new Error(error);
         })
     } else if (this.operation == 'transfer') {
       this.movementService.transfer(movement).subscribe(
-        (data:{})=> {
-          this.notificationService.showSuccess("Done");
+        (data: {}) => {
+          this.notificationService.showSuccess('Done');
+          this.updateAccountList.emit(null);
         },
-        (error:any)=> {
+        (error: any) => {
           throw new Error(error);
         }
       )
@@ -65,6 +68,6 @@ export class MovementComponent implements OnInit {
     this.detail = '';
     this.value = '';
     this.operation = '';
-    this.updateAccountList.emit(null);
+    //this.updateAccountList.emit(null);
   }
 }

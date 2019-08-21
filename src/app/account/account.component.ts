@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { AccountserviceService } from '../shared/account.service';
 import { NotificationService } from '../shared/notification.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-account',
@@ -35,7 +34,7 @@ export class AccountComponent implements OnInit {
     this.accountService.openAccount(this.openAccountFormData).subscribe(
       (data: {}) => {
         this.getAllAccounts();
-        this.notificationService.showSuccess("Account oppened");
+        this.notificationService.showSuccess('Account oppened');
       },
       (error: string) => {
         this.notificationService.showError(error);
@@ -57,10 +56,6 @@ export class AccountComponent implements OnInit {
     }
   }
 
-  accountSelected(id: number) {
-    this.accountselectedindex = id;
-  }
-
   updateOpenAccountFormData(form: FormGroup) {
     this.openAccountFormData.name = form.controls.accountName.value;
     this.openAccountFormData.balance = form.controls.balance.value;
@@ -69,7 +64,7 @@ export class AccountComponent implements OnInit {
 
   selectAccount(numbers: number[]) {
     const index = numbers[0]
-    let accountId = numbers[1]
+    const accountId = numbers[1]
     this.accountId = accountId;
     if (this.accountselectedindex == index) {
       this.accountselectedindex = null;
