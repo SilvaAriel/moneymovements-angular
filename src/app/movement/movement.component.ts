@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MovementService } from '../shared/movement.service'
+import { NotificationService } from '../shared/notification.service';
 
 @Component({
   selector: 'movement',
@@ -16,11 +17,9 @@ export class MovementComponent implements OnInit {
 
   @Output() updateAccountList = new EventEmitter();
 
-  error:string = "";
-  success:string = "";
-
   constructor(
-    public movementService: MovementService) { }
+    public movementService: MovementService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() { }
 
@@ -40,29 +39,26 @@ export class MovementComponent implements OnInit {
     if (this.operation == 'deposit') {
       this.movementService.deposit(movement).subscribe(
         (data:{})=> {
-          this.error=""
-          this.success="Done"
+          this.notificationService.showSuccess("Done");
         },
         (error:any)=> {
-          this.error = error
+          throw new Error(error);
         })
-    } else if (this.operation == 'withdraw') {
-      this.movementService.withdraw(movement).subscribe(
-        (data:{})=> {
-          this.error=""
-          this.success="Done"
-        },
-        (error:any)=> {
-          this.error = error
+      } else if (this.operation == 'withdraw') {
+        this.movementService.withdraw(movement).subscribe(
+          (data:{})=> {
+            this.notificationService.showSuccess("Done");
+          },
+          (error:any)=> {
+            throw new Error(error);
         })
     } else if (this.operation == 'transfer') {
       this.movementService.transfer(movement).subscribe(
         (data:{})=> {
-          this.error=""
-          this.success="Done"
+          this.notificationService.showSuccess("Done");
         },
         (error:any)=> {
-          this.error = error
+          throw new Error(error);
         }
       )
     }

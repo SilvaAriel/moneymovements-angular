@@ -1,25 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { AccountserviceService } from '../shared/account.service';
-import { AccountlistComponent } from '../accountlist/accountlist.component';
+import { NotificationService } from '../shared/notification.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.css'],
+  providers: [NotificationService]
 })
 export class AccountComponent implements OnInit {
 
-  accounts: any = []
+  accounts: any = [];
 
   accountId: number;
   accountselectedindex: number = null;
-  
+
   openAccountFormGroup: FormGroup;
   openAccountFormData = {name: '', balance: ''};
 
-  constructor(public accountService:AccountserviceService) {
+  constructor(
+    public accountService: AccountserviceService,
+    private notificationService: NotificationService) {
     this.openAccountFormGroup = this.createOpenAccountFormGroup();
    }
 
@@ -29,29 +33,31 @@ export class AccountComponent implements OnInit {
 
   openAccount() {
     this.accountService.openAccount(this.openAccountFormData).subscribe(
-      (data:{})=>{
+      (data: {}) => {
         this.getAllAccounts();
+        this.notificationService.showSuccess("Account oppened");
       },
-      (error:{})=>{
-        console.error(error)})
+      (error: string) => {
+        this.notificationService.showError(error);
+      });
   }
 
   getAllAccounts() {
     return this.accountService.getAllAccounts().subscribe(
       (data: {}) => {
         this.accounts = data;
-    })
+    });
   }
 
   closeAccount(account) {
     if (window.confirm(`Do you really want to close the account ${account.name} ?`)) {
       this.accountService.closeAccount(account).subscribe((data: {}) => {
         this.getAllAccounts();
-      })
+      });
     }
   }
 
-  accountSelected(id:number) {
+  accountSelected(id: number) {
     this.accountselectedindex = id;
   }
 
@@ -61,8 +67,8 @@ export class AccountComponent implements OnInit {
     this.openAccount();
   }
 
-  selectAccount(numbers:number[]) {
-    let index = numbers[0]
+  selectAccount(numbers: number[]) {
+    const index = numbers[0]
     let accountId = numbers[1]
     this.accountId = accountId;
     if (this.accountselectedindex == index) {
