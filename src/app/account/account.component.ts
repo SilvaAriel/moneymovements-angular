@@ -42,6 +42,7 @@ export class AccountComponent implements OnInit {
       (data: {}) => {
         this.getAllAccounts();
         this.notificationService.showSuccess('Account oppened');
+        this.openAccountFormGroup.reset();
       },
       (error: string) => {
         this.notificationService.showError(error);
