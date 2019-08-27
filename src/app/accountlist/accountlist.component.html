@@ -12,7 +12,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let account of accountList; let i = index" (click)="selectAccount(i, account.accountId)" [class.alert-info]="i == accountSelectedIndex">
+            <tr *ngFor="let account of accountList; let i = index" 
+            (click)="selectAccount(i, account.accountId)" 
+            [class.alert-info]="i == accountOneSelectedIndex" 
+            [class.alert-danger]="i == accountTwoSelectedIndex"
+            [class.disabled]="notSelectedAccounts.includes(i)">
               <td>{{account.name}}</td>
               <td>{{account.balance}}</td>
               <td>{{account.status}}</td>

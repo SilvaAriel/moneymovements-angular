@@ -1,15 +1,13 @@
 <div class="container custom-container">
-  <p *ngIf="error" class="alert alert-danger" role="alert">{{ error }}</p>
-  <p *ngIf="success" class="alert alert-success" role="alert">{{ success }}</p>
-  <div *ngIf="accountId != null" class="form-group float-left">
+  <p class="selectDestAccount" *ngIf="selectDestinationMessage">Select the destination account</p>
+  <div *ngIf="accountOneId != null" class="form-group float-left">
     <label class=""><input type="radio" name="operation" id="deposit" #deposit (click)="setOperation(deposit)">Deposit</label>
     <label class=""><input type="radio" name="operation" id="withdraw" #withdraw (click)="setOperation(withdraw)">Withdraw</label>
     <label class=""><input type="radio" name="operation" id="transfer" #transfer (click)="setOperation(transfer)">Transfer</label>
     <br>
     <label *ngIf="operation == 'deposit'">Deposit: <input type="text" class="form-control" placeholder="value" [(ngModel)]='value'></label>
     <label *ngIf="operation == 'withdraw'">Withdraw: <input type="text" class="form-control" placeholder="value" [(ngModel)]='value'></label>
-    <label *ngIf="operation == 'transfer'">Transfer: <input type="text" class="form-control" placeholder="value" [(ngModel)]='value'>
-    <input type="text"  class="form-control" placeholder="Select dest. account" [(ngModel)]='destAccountId'></label>
+    <label *ngIf="operation == 'transfer'">Transfer: <input type="text" class="form-control" placeholder="value" [(ngModel)]='value'></label>
     <label><input class="form-control" type="text" placeholder="Detail" [(ngModel)]="detail"></label>
     <button (click)='finalizarOperacao()'>Enviar</button>
   </div>

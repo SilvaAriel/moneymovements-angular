@@ -6,13 +6,19 @@
     </openaccount>
     <accountlist 
       [accountList]="accounts"
-      [accountSelectedIndex]="accountselectedindex"
+      [accountOneSelectedIndex]="accountOneIndex"
+      [accountTwoSelectedIndex]="accountTwoIndex"
+      [notSelectedAccounts]="notSelectedAccounts"
       (accountSelectedEvent)=selectAccount($event)
       (closeAccountEvent)="closeAccount($event)">
     </accountlist>
     <movement 
-      [accountId]="accountId"
-      (updateAccountList)="getAllAccounts()">
+      [accountOneId]="accountOneId"
+      [accountTwoId]="accountTwoId"
+      [selectDestinationMessage]="selectDestinationMessage"
+      (updateAccountList)="getAllAccounts()"
+      (transferSelectedEvent)="setTransferOperation($event)"
+      (resetSelectedAccountsEvent)="resetSelectedAccounts()">
     </movement>
   </div>
 </div>

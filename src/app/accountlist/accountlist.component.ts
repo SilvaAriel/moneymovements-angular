@@ -9,7 +9,9 @@ import { AccountserviceService } from '../shared/account.service';
 export class AccountlistComponent implements OnInit {
 
   @Input() accountList: any = [];
-  @Input() accountSelectedIndex: number = null;
+  @Input() accountOneSelectedIndex: number = null;
+  @Input() accountTwoSelectedIndex: number = null;
+  @Input() notSelectedAccounts: number[] = [];
 
   @Output() accountSelectedEvent = new EventEmitter<number[]>();
   @Output() closeAccountEvent = new EventEmitter<Account>();

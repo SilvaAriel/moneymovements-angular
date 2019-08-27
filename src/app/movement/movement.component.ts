@@ -9,13 +9,17 @@ import { NotificationService } from '../shared/notification.service';
 })
 export class MovementComponent implements OnInit {
 
-  @Input() accountId: number = null;
+  @Input() accountOneId: number = null;
+  @Input() accountTwoId: number = null;
+  @Input() selectDestinationMessage: boolean;
   detail: string = '';
   destAccountId: string = '';
   value: string = '';
   operation: string = '';
 
   @Output() updateAccountList = new EventEmitter();
+  @Output() transferSelectedEvent = new EventEmitter<boolean>();
+  @Output() resetSelectedAccountsEvent = new EventEmitter();
 
   constructor(
     public movementService: MovementService,
@@ -25,16 +29,21 @@ export class MovementComponent implements OnInit {
 
   setOperation(op) {
     this.operation = op.id;
+    if (op.id == 'transfer') {
+      this.transferSelectedEvent.emit(true);
+    } else {
+      this.transferSelectedEvent.emit(false);
+    }
   }
 
   finalizarOperacao() {
     let movement = {
       account: {
-        accountId: this.accountId
+        accountId: this.accountOneId
       },
       detail: this.detail,
       value: this.value,
-      destAccountId: this.destAccountId
+      destAccountId: this.accountTwoId
     }
     if (this.operation == 'deposit') {
       this.movementService.deposit(movement).subscribe(
@@ -68,6 +77,7 @@ export class MovementComponent implements OnInit {
     this.detail = '';
     this.value = '';
     this.operation = '';
-    //this.updateAccountList.emit(null);
+    this.accountOneId = null;
+    this.resetSelectedAccountsEvent.emit();
   }
 }
