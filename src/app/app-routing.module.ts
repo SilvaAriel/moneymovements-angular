@@ -3,8 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
-  {path:'', pathMatch: 'full', redirectTo:'account'},
-  {path:'account', component: AccountComponent}
+  {path:'', pathMatch: 'full', component: AccountComponent}
 ];
 
 @NgModule({
