@@ -60,6 +60,7 @@ export class AccountComponent implements OnInit {
     if (window.confirm(`Do you really want to close the account ${account.name} ?`)) {
       this.accountService.closeAccount(account).subscribe((data: {}) => {
         this.getAllAccounts();
+        this.accountOneId = null;
       });
     }
   }
