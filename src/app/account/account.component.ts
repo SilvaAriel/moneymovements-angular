@@ -12,10 +12,17 @@ import { NotificationService } from '../shared/notification.service';
 })
 export class AccountComponent implements OnInit {
 
-  accounts: any = [];
+  accounts: any[] = [];
 
-  accountId: number;
-  accountselectedindex: number = null;
+  accountOneId: number;
+  accountTwoId: number;
+  accountOneIndex: number = null;
+  accountTwoIndex: number = null;
+
+  transferOperation: boolean = false;
+  notSelectedAccounts: number[] = [];
+
+  selectDestinationMessage: boolean = false;
 
   openAccountFormGroup: FormGroup;
   openAccountFormData = {name: '', balance: ''};
@@ -43,7 +50,7 @@ export class AccountComponent implements OnInit {
 
   getAllAccounts() {
     return this.accountService.getAllAccounts().subscribe(
-      (data: {}) => {
+      (data: Account[]) => {
         this.accounts = data;
     });
   }
@@ -62,16 +69,62 @@ export class AccountComponent implements OnInit {
     this.openAccount();
   }
 
+  setTransferOperation(isTransfer: boolean) {
+    this.transferOperation = isTransfer;
+    if (this.transferOperation == true) {
+      this.selectDestinationMessage = true;
+    } else {
+      this.selectDestinationMessage = false;
+      this.accountTwoId = null;
+    }
+  }
+
   selectAccount(numbers: number[]) {
     const index = numbers[0]
     const accountId = numbers[1]
-    this.accountId = accountId;
-    if (this.accountselectedindex == index) {
-      this.accountselectedindex = null;
-      this.accountId = null;
-    } else {
-      this.accountselectedindex = index;
+
+    if (this.accountTwoIndex == null && (this.accountOneIndex == null || this.accountOneIndex != index)) {
+      if (this.accountOneIndex != index && this.accountOneIndex != null && this.transferOperation) {
+        this.accountTwoIndex = index;
+        this.accountTwoId = accountId;
+        this.disableAccountsNotSelected();
+        this.selectDestinationMessage = false;
+      } else {
+        this.accountOneIndex = index;
+        this.accountOneId = accountId;
+      }
+    } else if (this.accountOneIndex == index || this.accountTwoIndex == index) {
+      if (this.accountOneIndex == index) {
+        this.accountOneIndex = null;
+        this.accountTwoIndex = null;
+        this.accountOneId = null;
+        this.accountTwoId = null;
+        this.notSelectedAccounts = [];
+        this.transferOperation = false;
+        this.selectDestinationMessage = false;
+      } else if (this.accountTwoIndex == index) {
+        this.accountTwoIndex = null;
+        this.notSelectedAccounts = [];
+        this.selectDestinationMessage = true;
+      }
     }
+  }
+
+  disableAccountsNotSelected() {
+    const selectedAccounts: number[] = [this.accountOneIndex, this.accountTwoIndex];
+    let accountsIndexes: number[] = [];
+    for (let i = 0; i < this.accounts.length; i ++) {
+      accountsIndexes.push(i);
+    }
+    this.notSelectedAccounts = accountsIndexes.filter(a => !selectedAccounts.includes(a));
+  }
+
+  resetSelectedAccounts() {
+    this.accountOneIndex = null;
+    this.accountTwoIndex = null;
+    this.accountOneId = null;
+    this.accountTwoId = null;
+    this.notSelectedAccounts = [];
   }
 
   createOpenAccountFormGroup(){
