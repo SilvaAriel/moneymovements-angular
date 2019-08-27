@@ -17,10 +17,10 @@
             [class.alert-info]="i == accountOneSelectedIndex" 
             [class.alert-danger]="i == accountTwoSelectedIndex"
             [class.disabled]="notSelectedAccounts.includes(i)">
-              <td>{{account.name | titlecase}}</td>
-              <td>{{account.balance | currency}}</td>
-              <td>{{account.status}}</td>
-              <td>
+              <td *ngIf="account.status == true">{{account.name | titlecase}}</td>
+              <td *ngIf="account.status == true">{{account.balance | currency}}</td>
+              <td *ngIf="account.status == true">{{account.status}}</td>
+              <td *ngIf="account.status == true">
                 <span *ngIf="account.status" class="delete" (click)="closeAccount(account)">Close</span>
               </td>
             </tr>
