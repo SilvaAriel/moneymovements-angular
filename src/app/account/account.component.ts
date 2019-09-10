@@ -57,7 +57,7 @@ export class AccountComponent implements OnInit {
   }
 
   closeAccount(account) {
-    if (window.confirm(`Do you really want to close the account ${account.name} ?`)) {
+    if (window.confirm(`Do you really want to close the account ${account.name}?`)) {
       this.accountService.closeAccount(account).subscribe((data: {}) => {
         this.getAllAccounts();
         this.accountOneId = null;
@@ -73,17 +73,22 @@ export class AccountComponent implements OnInit {
 
   setTransferOperation(isTransfer: boolean) {
     this.transferOperation = isTransfer;
-    if (this.transferOperation == true) {
-      this.selectDestinationMessage = true;
+    if (this.transferOperation == true && this.selectDestinationMessage == false) {
+      if (this.accountTwoId == null) {
+        this.selectDestinationMessage = true;
+      }
     } else {
       this.selectDestinationMessage = false;
       this.accountTwoId = null;
+      this.transferOperation = false;
+      this.accountTwoIndex = null;
+      this.notSelectedAccounts = [];
     }
   }
 
   selectAccount(numbers: number[]) {
-    const index = numbers[0]
-    const accountId = numbers[1]
+    const index = numbers[0];
+    const accountId = numbers[1];
 
     if (this.accountTwoIndex == null && (this.accountOneIndex == null || this.accountOneIndex != index)) {
       if (this.accountOneIndex != index && this.accountOneIndex != null && this.transferOperation) {
@@ -126,6 +131,7 @@ export class AccountComponent implements OnInit {
     this.accountTwoIndex = null;
     this.accountOneId = null;
     this.accountTwoId = null;
+    this.transferOperation = false;
     this.notSelectedAccounts = [];
   }
 

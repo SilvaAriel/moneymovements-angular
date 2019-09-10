@@ -1,31 +1,21 @@
-<div class="container custom-container-2"></div>
-  <div class="col-md-7">
-  <div *ngIf="accountList.length !== 0">
-      <div class="col-md-12">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Balance</th>
-              <th scope="col">Status</th>
-              <th scope="col">Close</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let account of accountList; let i = index" 
-            (click)="selectAccount(i, account.accountId)" 
-            [class.alert-info]="i == accountOneSelectedIndex" 
-            [class.alert-danger]="i == accountTwoSelectedIndex"
-            [class.disabled]="notSelectedAccounts.includes(i)">
-              <td *ngIf="account.status == true">{{account.name | titlecase}}</td>
-              <td *ngIf="account.status == true">{{account.balance | currency}}</td>
-              <td *ngIf="account.status == true">{{account.status}}</td>
-              <td *ngIf="account.status == true">
-                <span *ngIf="account.status" class="delete" (click)="closeAccount(account)">Close</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="px-4">
+  <div class="row listHead py-2">
+    <span class="col listHeadName">NAME</span>
+    <span class="col-2 listHeadBalance">BALANCE</span>
+    <span class="col-1 listHeadClose">CLOSE</span>
+  </div>
+  <div class="py-2" *ngIf="accountList.length !== 0">
+    <div class="form-row align-items-center listElement" *ngFor="let account of accountList; let i = index"
+        (click)="selectAccount(i, account.accountId)"
+        [class.selectedOne]="i == accountOneSelectedIndex"
+        [class.selectedTwo]="i == accountTwoSelectedIndex"
+        [class.disabled]="notSelectedAccounts.includes(i)">
+      <span class="col contentSpan" *ngIf="account.status == true">{{account.name | titlecase}}</span>
+      <span class="col-2 contentSpan" *ngIf="account.status == true">{{account.balance | currency}}</span>
+      <span class="col-1 contentSpan listIndividualElement closeBox listIndividualElementClose"
+      *ngIf="account.status == true"
+      (click)="closeAccount(account)"
+      [class.disabled]="notSelectedAccounts.includes(i)">&times;</span>
     </div>
+  </div>
 </div>

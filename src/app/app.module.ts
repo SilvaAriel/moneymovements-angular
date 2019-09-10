@@ -13,6 +13,7 @@ import { AccountComponent } from './account/account.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalErrorHandler } from './global-error-handler';
 import { MatSnackBarModule } from '@angular/material';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatSnackBarModule } from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    InlineSVGModule.forRoot()
   ],
   providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],
   bootstrap: [AppComponent]
