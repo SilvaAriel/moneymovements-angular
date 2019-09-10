@@ -37,6 +37,7 @@ export class MovementComponent implements OnInit {
   }
 
   finalizarOperacao() {
+
     let movement = {
       account: {
         accountId: this.accountOneId
@@ -45,39 +46,46 @@ export class MovementComponent implements OnInit {
       value: this.value,
       destAccountId: this.accountTwoId
     }
-    if (this.operation == 'deposit') {
-      this.movementService.deposit(movement).subscribe(
-        (data: {}) => {
-          this.notificationService.showSuccess('Done');
-          this.updateAccountList.emit(null);
-        },
-        (error: any) => {
-          throw new Error(error);
-        })
-    } else if (this.operation == 'withdraw') {
-      this.movementService.withdraw(movement).subscribe(
-        (data: {}) => {
-          this.notificationService.showSuccess('Done');
-          this.updateAccountList.emit(null);
-        },
-        (error: any) => {
-          throw new Error(error);
-        })
-    } else if (this.operation == 'transfer') {
-      this.movementService.transfer(movement).subscribe(
-        (data: {}) => {
-          this.notificationService.showSuccess('Done');
-          this.updateAccountList.emit(null);
-        },
-        (error: any) => {
-          throw new Error(error);
-        }
-      )
+
+    if (this.operation === "") {
+      this.notificationService.showError("Please select an operation");
+    } else if (this.operation !== "" && this.detail === "" || this.value === "") {
+      this.notificationService.showError("Please write the value and the detail");
+    } else {
+      if (this.operation == 'deposit') {
+        this.movementService.deposit(movement).subscribe(
+          (data: {}) => {
+            this.notificationService.showSuccess('Done');
+            this.updateAccountList.emit(null);
+          },
+          (error: any) => {
+            throw new Error(error);
+          })
+      } else if (this.operation == 'withdraw') {
+        this.movementService.withdraw(movement).subscribe(
+          (data: {}) => {
+            this.notificationService.showSuccess('Done');
+            this.updateAccountList.emit(null);
+          },
+          (error: any) => {
+            throw new Error(error);
+          })
+      } else if (this.operation == 'transfer') {
+        this.movementService.transfer(movement).subscribe(
+          (data: {}) => {
+            this.notificationService.showSuccess('Done');
+            this.updateAccountList.emit(null);
+          },
+          (error: any) => {
+            throw new Error(error);
+          }
+        )
+      }
+      this.detail = '';
+      this.value = '';
+      this.operation = '';
+      this.accountOneId = null;
+      this.resetSelectedAccountsEvent.emit();
     }
-    this.detail = '';
-    this.value = '';
-    this.operation = '';
-    this.accountOneId = null;
-    this.resetSelectedAccountsEvent.emit();
   }
 }
