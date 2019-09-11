@@ -6,12 +6,12 @@
   </div>
   <div class="py-2" *ngIf="accountList.length !== 0">
     <div class="form-row align-items-center listElement" *ngFor="let account of accountList; let i = index"
-        (click)="selectAccount(i, account.accountId)"
+        
         [class.selectedOne]="i == accountOneSelectedIndex"
         [class.selectedTwo]="i == accountTwoSelectedIndex"
         [class.disabled]="notSelectedAccounts.includes(i)">
-      <span class="col" *ngIf="account.status == true">{{account.name | titlecase}}</span>
-      <span class="col-2" *ngIf="account.status == true">{{account.balance | currency}}</span>
+      <span class="col" *ngIf="account.status == true" (click)="selectAccount(i, account.accountId)">{{account.name | titlecase}}</span>
+      <span class="col-2" *ngIf="account.status == true" (click)="selectAccount(i, account.accountId)">{{account.balance | currency}}</span>
       <span class="col-1 closeBox"
       *ngIf="account.status == true"
       (click)="closeAccount(account)">&times;</span>
