@@ -12,13 +12,13 @@ export class NotificationService {
 
   showSuccess(message: string): void {
     this.zone.run(() => {
-      this.snackBar.open(message, null, {duration: 3000, panelClass: ['alert', 'alert-success']});
+      this.snackBar.open(message, null, {duration: 3000, panelClass: ['successSnackBar']});
     });
   }
 
   showError(message: string): void {
     this.zone.run(() => {
-      this.snackBar.open(message, 'X', {panelClass: ['alert', 'alert-danger']});
+      this.snackBar.open(message, 'X', {panelClass: ['errorSnackBar']});
     });
   }
 }

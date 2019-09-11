@@ -1,16 +1,13 @@
-<div class="container custom-container">  
-  <form class="mb-3 text-center" [formGroup]="openAccountFormFields" (ngSubmit)="openAccount()">
-    <div class="col-md-5">
-      <div class="form-group float-left">
-        <input class="form-control" placeholder="Name" formControlName="accountName">
-      </div>
-      <div class="form-group float-left">
-        <input class="form-control" placeholder="Balance" formControlName="balance">
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-success btn-lg btn-block">Open Account</button>
-      </div>
+<form class="openAccountForm py-4 px-4" [formGroup]="openAccountFormFields" (ngSubmit)="openAccount()">
+  <div class="form-row">
+    <div class="col">
+      <input class="form-control formFields" placeholder="Name" formControlName="accountName">
     </div>
-  </form>
-
-</div>
+    <div class="col-3">
+      <input class="form-control formFields" placeholder="Balance" formControlName="balance">
+    </div>
+    <div class="col-2">
+      <button type="submit" class="openBox form-control">OPEN</button>
+    </div>
+  </div>
+</form>
