@@ -17,18 +17,6 @@
     background-color: rgb(245, 245, 245);
 }
 
-.listIndividualElement {
-    border: 2px solid white;
-    font-size: 1.3em;
-    color: black;
-    border-style : hidden;
-    padding: 10px 0px;
-}
-
-.listIndividualElementName {
-    padding-left: 0px;
-}
-
 .selectedOne {
     transform: scaleX(1.1);
     margin-top: 5px;

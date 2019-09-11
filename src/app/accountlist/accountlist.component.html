@@ -10,12 +10,11 @@
         [class.selectedOne]="i == accountOneSelectedIndex"
         [class.selectedTwo]="i == accountTwoSelectedIndex"
         [class.disabled]="notSelectedAccounts.includes(i)">
-      <span class="col contentSpan" *ngIf="account.status == true">{{account.name | titlecase}}</span>
-      <span class="col-2 contentSpan" *ngIf="account.status == true">{{account.balance | currency}}</span>
-      <span class="col-1 contentSpan listIndividualElement closeBox listIndividualElementClose"
+      <span class="col" *ngIf="account.status == true">{{account.name | titlecase}}</span>
+      <span class="col-2" *ngIf="account.status == true">{{account.balance | currency}}</span>
+      <span class="col-1 closeBox"
       *ngIf="account.status == true"
-      (click)="closeAccount(account)"
-      [class.disabled]="notSelectedAccounts.includes(i)">&times;</span>
+      (click)="closeAccount(account)">&times;</span>
     </div>
   </div>
 </div>
