@@ -6,7 +6,6 @@
   </div>
   <div class="py-2" *ngIf="accountList.length !== 0">
     <div class="form-row align-items-center listElement" *ngFor="let account of accountList; let i = index"
-        
         [class.selectedOne]="i == accountOneSelectedIndex"
         [class.selectedTwo]="i == accountTwoSelectedIndex"
         [class.disabled]="notSelectedAccounts.includes(i)">
