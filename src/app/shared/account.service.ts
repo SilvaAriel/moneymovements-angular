@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { Account } from '../shared/account';
+import { DataformatterService } from './dataformatter.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,11 @@ export class AccountserviceService {
       'Content-Type': 'application/json'
     })
   }
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient, private dataFormatter:DataformatterService) {}
 
     openAccount(account):Observable<Account> {
-      return this.http.post<Account>(this.apiUrl, JSON.stringify(account), this.httpOptions)
+      let formattedAccount = this.dataFormatter.formatAccountBalance(account);
+      return this.http.post<Account>(this.apiUrl, JSON.stringify(formattedAccount), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
