@@ -11,9 +11,9 @@ import { DataformatterService } from './dataformatter.service';
 })
 export class MovementService {
 
-  depositUrl = "http://localhost:8080/api/deposit";
-  withdrawUrl= "http://localhost:8080/api/withdraw";
-  transferUrl = "http://localhost:8080/api/transfer";
+  depositUrl = "https://financial-movements-api.herokuapp.com/api/deposit";
+  withdrawUrl= "https://financial-movements-api.herokuapp.com/api/withdraw";
+  transferUrl = "https://financial-movements-api.herokuapp.com/api/transfer";
 
   httpOptions = {
     headers: new HttpHeaders({
