@@ -4,15 +4,16 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { Movement } from './movement';
+import { DataformatterService } from './dataformatter.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovementService {
 
-  depositUrl = "http://localhost:8080/api/deposit";
-  withdrawUrl= "http://localhost:8080/api/withdraw";
-  transferUrl = "http://localhost:8080/api/transfer";
+  depositUrl = "https://financial-movements-api.herokuapp.com/api/deposit";
+  withdrawUrl= "https://financial-movements-api.herokuapp.com/api/withdraw";
+  transferUrl = "https://financial-movements-api.herokuapp.com/api/transfer";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -20,10 +21,11 @@ export class MovementService {
     })
   }
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient, private dataFormatter:DataformatterService) {}
 
   deposit(deposit):Observable<Movement>{
-    return this.http.post<Movement>(this.depositUrl, JSON.stringify(deposit), this.httpOptions)
+    const formattedMovement = this.dataFormatter.formatMovementValue(deposit);
+    return this.http.post<Movement>(this.depositUrl, JSON.stringify(formattedMovement), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -31,6 +33,7 @@ export class MovementService {
   }
 
   withdraw(withdraw):Observable<Movement>{
+    const formattedMovement = this.dataFormatter.formatMovementValue(withdraw);
     return this.http.post<Movement>(this.withdrawUrl, JSON.stringify(withdraw), this.httpOptions)
     .pipe(
       retry(1),
@@ -39,6 +42,7 @@ export class MovementService {
   }
 
   transfer(transfer):Observable<Movement>{
+    const formattedMovement = this.dataFormatter.formatMovementValue(transfer);
     return this.http.post<Movement>(this.transferUrl, JSON.stringify(transfer), this.httpOptions)
     .pipe(
       retry(1),
