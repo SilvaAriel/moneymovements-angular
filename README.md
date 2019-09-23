@@ -1,27 +1,48 @@
-# Moneymovements
+## Money Box
+An application to separate your money by categories called boxes. It was built in Angular and consumes a [Spring Boot API](https://github.com/SilvaAriel/Money-Box-API).
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+## Project Status
 
-## Development server
+- [x] Open Box
+- [x] Money In
+- [x] Money Out
+- [x] Transfer money between Boxes
+- [ ] Responsiveness
+- [ ] Authentication
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Project Screen Shots
 
-## Code scaffolding
+### What's in the boxes?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![Main Page](https://user-images.githubusercontent.com/19581381/65415285-d3060f00-ddcb-11e9-989a-9acc9a6c6e0a.png)
 
-## Build
+### Withdraw
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+![Withdraw](https://user-images.githubusercontent.com/19581381/65415286-d39ea580-ddcb-11e9-9403-fcaa58e05240.png)
 
-## Running unit tests
+### Deposit
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Deposit](https://user-images.githubusercontent.com/19581381/65415287-d39ea580-ddcb-11e9-9408-e351dee15bbf.png)
 
-## Running end-to-end tests
+### Don't forget to select the destination box
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+![Select box to transfer](https://user-images.githubusercontent.com/19581381/65416189-b2d74f80-ddcd-11e9-9214-c5b0dfee7345.png)
 
-## Further help
+### Transfer
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+![Transfer](https://user-images.githubusercontent.com/19581381/65415291-d39ea580-ddcb-11e9-83e2-79d61533b640.png)
+
+## Installation and Setup Instructions
+Clone down this repository. You will need `node` and `npm` installed globally on your machine.
+
+Installation:
+
+`npm install`
+
+To Start App:
+
+`ng serve`
+
+To Visit App:  
+
+`localhost:4200`
