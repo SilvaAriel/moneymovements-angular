@@ -1,3 +1,5 @@
+![money_box](https://user-images.githubusercontent.com/19581381/65416920-42313280-ddcf-11e9-8e6b-406b6bd45de6.png)
+
 ## Money Box
 An application to separate your money by categories called boxes. It was built in Angular and consumes a [Spring Boot API](https://github.com/SilvaAriel/Money-Box-API).
 
