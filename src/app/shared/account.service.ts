@@ -11,7 +11,7 @@ import { DataformatterService } from './dataformatter.service';
 })
 export class AccountserviceService {
 
-  apiUrl = "http://localhost:8080/api/account";
+  apiUrl = "https://financial-movements-api.herokuapp.com/api/account";
   
   httpOptions = {
     headers: new HttpHeaders({

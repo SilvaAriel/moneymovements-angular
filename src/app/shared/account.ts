@@ -1,4 +1,4 @@
-import { Movement } from 'src/app/shared/Movement';
+import { Movement } from 'src/app/shared/movement';
 
 export interface Account {
     accountId?: number;

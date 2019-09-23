@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Account } from './Account';
-import { Movement } from './Movement';
+import { Account } from './account';
+import { Movement } from './movement';
 
 @Injectable({
   providedIn: 'root'
