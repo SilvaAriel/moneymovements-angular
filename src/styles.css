@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Abel|Francois+One&display=swap');
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-simple-snackbar {
+    font-size: 20px;
+}
+
+.mat-snack-bar-container {
+    padding: 17px 19px !important;
+}
+
+.mat-button {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.successSnackBar {
+    background-color: #417ecc;
+}
+
+.errorSnackBar {
+    background-color: #ce3e3e;
+}

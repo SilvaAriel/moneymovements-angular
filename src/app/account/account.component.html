@@ -1,7 +1,25 @@
-<div class="container custom-container">
-  <div class="col-md-12">
-    <openaccount></openaccount>
-    <accountlist #accountlist (accountSelectedEvent)=accountSelected($event)></accountlist>
-    <movement [accountId]="accountselected" (updateAccountList)="accountlist.getAllAccounts()"></movement>
+<div class="logo text-center" aria-label="logo" [inlineSVG]="'/assets/images/money_box.svg'"></div>
+<div class="container">
+  <div class="main">
+    <openaccount 
+      [openAccountFormFields] = "openAccountFormGroup"
+      (sendFormData) = "updateOpenAccountFormData($event)">
+    </openaccount>
+    <accountlist 
+      [accountList]="accounts"
+      [accountOneSelectedIndex]="accountOneIndex"
+      [accountTwoSelectedIndex]="accountTwoIndex"
+      [notSelectedAccounts]="notSelectedAccounts"
+      (accountSelectedEvent)=selectAccount($event)
+      (closeAccountEvent)="closeAccount($event)">
+    </accountlist>
+    <movement 
+      [accountOneId]="accountOneId"
+      [accountTwoId]="accountTwoId"
+      [selectDestinationMessage]="selectDestinationMessage"
+      (updateAccountList)="getAllAccounts()"
+      (transferSelectedEvent)="setTransferOperation($event)"
+      (resetSelectedAccountsEvent)="resetSelectedAccounts()">
+    </movement>
   </div>
 </div>

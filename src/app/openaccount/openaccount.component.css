@@ -1,0 +1,23 @@
+.openBox {
+    padding: 0;
+    border: none;
+    background: none;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #417ecc;
+    font-size: 1em;
+}
+
+.openBox:hover {
+    background-color: #417ecc;
+    color: white;
+    border-radius: 10px;
+}
+
+.formFields{
+    color: #686868;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid black;
+    font-size: 1em;
+}

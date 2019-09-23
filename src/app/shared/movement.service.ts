@@ -48,12 +48,7 @@ export class MovementService {
 
   handleError(error) {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    window.alert(errorMessage);
+    errorMessage = error.error.errors[0];
     return throwError(errorMessage);
  }
 

@@ -1,0 +1,57 @@
+input[type="radio"] {
+    visibility: hidden;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+}
+
+.radioLabel {
+    margin-right: 3%;
+    padding: 6px 7px;
+    border-radius: 13px;
+    color: #417eccff;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+input[type="radio"]:checked+label {
+    color: #549d40ff;
+}
+
+input[type="radio"]:hover+label {
+    background-color: #417ecc;
+    color: white;
+    border-radius: 10px;
+}
+
+.selectDestAccount {
+    color: red;
+    font-weight: 500;
+    font-size: 1em;
+    display: inline-block;
+    letter-spacing: 2px;
+}
+
+.formFields{
+    color: #686868;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid black;
+    font-size: 1.1em;
+}
+
+.operationBtn {
+    border: none;
+    background: none;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: #417ecc;
+    font-size: 1.1em;
+}
+
+.operationBtn:hover {
+    background-color: #417ecc;
+    color: white;
+    border-radius: 10px;
+}
