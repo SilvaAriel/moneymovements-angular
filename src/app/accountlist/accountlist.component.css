@@ -8,13 +8,8 @@
     font-size: 1.2em;
 }
 
-.listHeadBalance, .listHeadClose {
-    padding: 0px;
-}
-
-.listElement:hover {
-    color: black;
-    background-color: rgb(245, 245, 245);
+.listHeadBalance {
+    padding: 1px;
 }
 
 .selectedOne {
@@ -43,17 +38,79 @@
 }
 
 .closeBox {
-    width: 100%;
+    width: 8%;
     text-align: center;
     font-size: 2em;
     color: #ff0000;
     padding: 0px;
 }
 
-.closeBox:hover {
-    width: 100%;
-    text-align: center;
-    font-size: 2em;
-    color: white;
-    background-color: #cb3939ff;
+@media (min-width: 900px) {
+
+    .listElement:hover {
+        color: black;
+        background-color: rgb(245, 245, 245);
+    }
+    
+    .closeBox:hover {
+        width: 100%;
+        text-align: center;
+        font-size: 2em;
+        color: white;
+        background-color: #cb3939ff;
+    }
+
 }
+
+@media (max-width: 700px) {
+
+    .selectedOne, .selectedTwo {
+        padding: 5px 0px;
+    }
+
+    .listHead {
+        font-size: 1.7em;
+    }
+
+    .listHeadClose, .closeBox {
+        max-width: 14%;
+    }
+
+    .listElement {
+        font-size: 1.7rem;
+    }
+
+    .selectedOne, .selectedTwo {
+        padding-left: 4.8%;
+        padding-right: 4.8%;
+    }
+
+}
+
+@media (max-width: 575.98px) { 
+    .listHeadName, .listHeadBalance, .listHeadClose, .listElement {
+        font-size: 1.1rem;
+    }
+
+    .selectedOne, .selectedTwo {
+        transform: none;
+        padding: 5px 0px;
+    }
+
+    .listElement .listBalance, .closeBox {
+        padding-left: 0px;
+    }
+
+    .listHeadClose, .closeBox {
+        max-width: 23%;
+    }
+ }
+
+ @media (max-width: 400px) {
+
+
+    .listHeadClose, .closeBox {
+        max-width: 23%;
+    }
+
+ }

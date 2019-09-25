@@ -8,13 +8,13 @@
     <br>
     <form (ngSubmit)="finalizarOperacao()">
       <div class="form-row py-3">
-        <div class="col-2">
+        <div class="col">
           <input class="form-control formFields" type="text" name="value" placeholder="Value" [(ngModel)]='value'>
         </div>
-        <div class="col-4">
+        <div class="col">
           <input class="form-control formFields" type="text" name="detail" placeholder="Detail" [(ngModel)]="detail">
         </div>
-        <div class="col-1">
+        <div class="col-2">
           <button class="operationBtn btn btn-success btn-block" (click)='finalizarOperacao()'>OK</button>
         </div>
       </div>
