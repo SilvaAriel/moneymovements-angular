@@ -3,7 +3,7 @@
   <div *ngIf="accountOneId != null" class="form-group">
     <div class="w-100"><hr></div>
     <input type="radio" name="operation" id="deposit" #deposit (click)="setOperation(deposit)"><label for="deposit" class="radioLabel">IN</label>
-    <input type="radio" name="operation" id="withdraw" #withdraw (click)="setOperation(withdraw)"><label for="withdraw" class="radioLabel">OUT</label>
+    <input type="radio" name="operation" id="withdraw" #withdraw (click)="setOperation(withdraw)" checked><label for="withdraw" class="radioLabel">OUT</label>
     <input type="radio" name="operation" id="transfer" #transfer (click)="setOperation(transfer)"><label for="transfer" class="radioLabel">TRANSFER</label>
     <br>
     <form (ngSubmit)="finalizarOperacao()">
