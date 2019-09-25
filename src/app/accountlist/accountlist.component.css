@@ -14,9 +14,9 @@
 
 .selectedOne {
     transform: scaleX(1.1);
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: #7ca6db;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: #7ca6db;  
     font-weight: 500;
     color:white;
     padding-left: 4.5%;
@@ -26,15 +26,14 @@
 
 .selectedTwo {
     transform: scaleX(1.1);
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     background-color: #76bf62;
     font-weight: 500;
     color:white;
     padding-left: 4.5%;
     padding-right: 4.5%;
     box-shadow: 0px 0px 5px black;
-    
 }
 
 .closeBox {
@@ -43,6 +42,10 @@
     font-size: 2em;
     color: #ff0000;
     padding: 0px;
+}
+
+.listHeadClose, .closeBox {
+    max-width: 12%;
 }
 
 @media (min-width: 900px) {

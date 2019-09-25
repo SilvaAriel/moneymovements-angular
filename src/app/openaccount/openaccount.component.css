@@ -6,6 +6,7 @@
     font-weight: 600;
     color: #417ecc;
     font-size: 1em;
+    
 }
 
 .openBox:hover {
@@ -21,6 +22,8 @@
     border-bottom: 1px solid black;
     font-size: 1em;
 }
+
+
 
 @media (max-width: 700px) {
 
