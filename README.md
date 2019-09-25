@@ -4,12 +4,12 @@
 An application to separate your money by categories called boxes. It was built in Angular and consumes a [Spring Boot API](https://github.com/SilvaAriel/Money-Box-API).
 
 ## Project Status
-◼◼◼◼◼◼▭▭▭▭ 60%
+◼◼◼◼◼◼◼▭▭▭ 60%
 - [x] Open Box
 - [x] Money In
 - [x] Money Out
 - [x] Transfer money between Boxes
-- [ ] Responsiveness
+- [x] Responsiveness
 - [ ] List Box movement history
 - [ ] Authentication
 
