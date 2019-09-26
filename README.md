@@ -10,8 +10,8 @@ An application to separate your money by categories called boxes. It was built i
 - [x] Money Out
 - [x] Transfer money between Boxes
 - [x] Responsiveness
-- [ ] List Box movement history
 - [ ] Authentication
+- [ ] List Box movement history
 
 ## Project Screen Shots
 
