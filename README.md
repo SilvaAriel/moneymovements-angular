@@ -40,17 +40,17 @@ There are two ways to run this app:
 
 1. Using Docker:
 
-`docker-compose up --build`
+    `docker-compose up --build`
 
 2. Globally installed Node and NPM:
 
-Installation:
+    Installation:
 
-`npm install`
+      `npm install`
 
-To Start App:
+    To Start App:
 
-`ng serve`
+      `ng serve`
 
 To Visit App:  
 
