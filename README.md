@@ -36,7 +36,13 @@ An application to separate your money by categories called boxes. It was built i
 ![Transfer](https://user-images.githubusercontent.com/19581381/65415291-d39ea580-ddcb-11e9-83e2-79d61533b640.png)
 
 ## Installation and Setup Instructions
-Clone down this repository. You will need `node` and `npm` installed globally on your machine.
+There are two ways to run this app:
+
+1. Using Docker:
+
+`docker-compose up --build`
+
+2. Globally installed Node and NPM:
 
 Installation:
 
