@@ -40,7 +40,7 @@ There are two ways to run this app:
 
     `docker-compose up --build`
 
-2. Globally installed Node and NPM:
+2. Installing Angular with NPM:
 
     Installation:
 
